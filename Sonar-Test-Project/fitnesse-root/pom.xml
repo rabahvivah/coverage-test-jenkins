@@ -9,14 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>com.rabah.services</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>one</module>
-        <module>two</module>
-        <module>three</module>
-        <module>fitnesse-services</module>
-        <module>data</module>
-    </modules>
+    <artifactId>com.rabah.fitnesse</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.fitnesse</groupId>
+            <artifactId>fitnesse</artifactId>
+            <version>20161106</version>
+        </dependency>
+    </dependencies>
 </project>
