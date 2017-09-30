@@ -17,19 +17,15 @@ public class Pair<F, S> {
                 ']';
     }
 
-    public void setFirst(F first) {
-        this.first = first;
-    }
-
-    public void setSecond(S second) {
-        this.second = second;
-    }
-
     public F getFirst() {
         return first;
     }
 
     public S getSecond() {
         return second;
+    }
+
+    public static Pair from(String first, Integer second) {
+        return new Pair(first,second);
     }
 }

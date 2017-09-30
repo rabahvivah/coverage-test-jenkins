@@ -1,0 +1,19 @@
+---
+Help: Test pair manager service
+---
+|import                 |
+|com.rabah.fitnesse     |
+|com.rabah.services     |
+|com.rabah.services.data|
+
+|script:   Pair Fixture|
+|add pair;|one|1       |
+|add pair;|empty|3     |
+|add pair;|one|-100    |
+
+
+|query:Pair Fixture|
+|Rank |First|Second|
+|0    |empty|3     |
+|1    |one  |-100  |
+|2    |one  |1     |

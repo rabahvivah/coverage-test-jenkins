@@ -1,0 +1,14 @@
+<assembly>
+    <id>fitnesse-root-test.zip</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/test/fitnesse/FitNesseRoot/MySuiteTest</directory>
+            <outputDirectory>MySuiteTest</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

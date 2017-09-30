@@ -2,6 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
     <parent>
         <artifactId>com.rabah</artifactId>
         <groupId>com.rabah</groupId>
@@ -13,9 +15,89 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.rabah</groupId>
+            <artifactId>com.rabah.services.data</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rabah</groupId>
+            <artifactId>service-one</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.fitnesse</groupId>
             <artifactId>fitnesse</artifactId>
             <version>20161106</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <skipAssembly>false</skipAssembly>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptor>${basedir}/assembly.xml</descriptor>
+                    <finalName>fitnesse-root-test</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>no-tests</id>
+            <activation>
+                <property>
+                    <name>!it</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>with-tests</id>
+            <activation>
+                <property>
+                    <name>it</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>run-acceptance-tests</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
